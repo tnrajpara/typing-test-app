@@ -1,6 +1,4 @@
 let arr = [
-  "spectral",
-  "disrelish",
   "kissed",
   "exhalents",
   "xystus",
@@ -99,6 +97,9 @@ let arr = [
   "smutchiest",
   "lithologies",
   "overlain",
+];
+
+let arr2 = [
   "holidayers",
   "potshards",
   "sistrum",
@@ -196,6 +197,8 @@ let arr = [
   "boskiness",
   "outflanked",
   "sportscasters",
+];
+let arr3 = [
   "chloasma",
   "reductant",
   "veridicalities",
@@ -302,7 +305,7 @@ let arr = [
 ];
 
 const jsonArr = arr.map((word, index) => ({
-  id: index + 1,
+  id: index,
   text: word,
 }));
 

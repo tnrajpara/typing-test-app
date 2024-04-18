@@ -1,7 +1,7 @@
 import "./globals.css";
-import { Inconsolata, Kanit, PT_Sans } from "next/font/google";
+import { Fira_Code } from "next/font/google";
 
-const inter = Inconsolata({ subsets: ["latin"] });
+const inter = Fira_Code({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
