@@ -312,9 +312,9 @@ let arr3 = [
   "ounce",
 ];
 
-const jsonArr = arr.map((word, index) => ({
+const words = arr.map((word, index) => ({
   id: index,
   text: word,
 }));
 
-module.exports = jsonArr;
+module.exports = words;
