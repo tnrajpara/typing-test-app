@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import jsonArr from "./temp";
+import words from "./words";
 
 const TypeBox = () => {
   const shuffle = (array) => {
@@ -38,7 +38,7 @@ const TypeBox = () => {
     const firstArr = shuffle(jsonArr.slice(0, 30));
     secondArrRef.current = shuffle(jsonArr.slice(30, 60));
     setArr(firstArr);
-  }, []);
+  });
 
   const calculateSpeed = () => {
     let speed = Math.floor((countCharacter / 5 / (30 - seconds)) * 60);
