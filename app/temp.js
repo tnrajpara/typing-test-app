@@ -97,6 +97,14 @@ let arr = [
   "smutchiest",
   "lithologies",
   "overlain",
+  "potshards",
+  "sistrum",
+  "thigmotropism",
+  "remittal",
+  "sunburning",
+  "shepherds",
+  "alphabeting",
+  "hedonically",
 ];
 
 let arr2 = [

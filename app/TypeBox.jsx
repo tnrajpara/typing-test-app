@@ -3,15 +3,24 @@ import { useState, useRef, useEffect } from "react";
 import jsonArr from "./temp";
 
 const TypeBox = () => {
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
   const [inputValue, setInputValue] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timeOver, setTimeOver] = useState(false);
   const [wrongWord, setWrongWord] = useState(false);
-  const [arr, setarr] = useState(jsonArr.slice(0, 20));
+  const [arr, setArr] = useState([]);
   const [seconds, setSeconds] = useState(30);
   const [count, setCount] = useState(0);
   const [speed, setSpeed] = useState(0);
   const [countCharacter, setCountCharacters] = useState(0);
+  const secondArrRef = useRef([]);
 
   useEffect(() => {
     if (seconds > 0) {
@@ -25,6 +34,12 @@ const TypeBox = () => {
     }
   }, [seconds]);
 
+  useEffect(() => {
+    const firstArr = shuffle(jsonArr.slice(0, 30));
+    secondArrRef.current = shuffle(jsonArr.slice(30, 60));
+    setArr(firstArr);
+  }, []);
+
   const calculateSpeed = () => {
     let speed = Math.floor((countCharacter / 5 / (30 - seconds)) * 60);
     setSpeed(speed);
@@ -36,12 +51,11 @@ const TypeBox = () => {
     if (value.toLowerCase() === arr[currentIndex].text.toLowerCase()) {
       if (currentIndex <= arr.length - 1) {
         setCurrentIndex((prevIndex) => prevIndex + 1);
-        console.log(currentIndex);
         setInputValue("");
         setCount((count) => count + 1);
       }
       if (currentIndex === arr.length - 1) {
-        setarr(jsonArr.slice(20, 40));
+        setArr(secondArrRef.current);
         setCurrentIndex(0);
       }
     }
@@ -85,10 +99,10 @@ const TypeBox = () => {
         </h2>
       </div>
 
-      <div className="bg-[#323437]  text-[#d1d0c5] font-mono">
+      <div className="bg-[#323437]  text-[#d1d0c5]">
         <div className="">
           {timeOver ? (
-            <div className="flex justify-center items-center font-serif px-3 py-5 flex-col">
+            <div className="flex justify-center items-center flex-col font-mono">
               <h1 className="text-center text-2xl ">Time Over</h1>
               <h4 className="text-gray-400">{speed}</h4>
               <button onClick={() => window.location.reload()}>
@@ -99,8 +113,8 @@ const TypeBox = () => {
             <div className="flex justify-center flex-col">
               <div className="flex flex-wrap h-full justify-center items-center my-5">
                 {arr.map((word, index) => (
-                  <div key={index}>
-                    <p className="text-[#646669] text-xl w-4/5">
+                  <div key={word.id}>
+                    <p className="text-[#646669] text-xl w-4/5 ">
                       {word.text.split(" ").map((letter, i) => (
                         <letter
                           key={i}
